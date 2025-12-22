@@ -19,7 +19,7 @@ public class RoiReportServiceImpl implements RoiService {
     private final SaleTransactionRepository saleTransactionRepository;
     private final DiscountCodeRepository discountCodeRepository;
 
-    public RoiServiceImpl(
+    public RoiReportServiceImpl(
             RoiReportRepository roiReportRepository,
             SaleTransactionRepository saleTransactionRepository,
             DiscountCodeRepository discountCodeRepository) {
