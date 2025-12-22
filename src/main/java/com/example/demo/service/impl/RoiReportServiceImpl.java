@@ -13,7 +13,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RoiServiceImpl implements RoiService {
+public class RoiReportServiceImpl implements RoiService {
 
     private final RoiReportRepository roiReportRepository;
     private final SaleTransactionRepository saleTransactionRepository;
