@@ -19,7 +19,7 @@ public class AuthController {
         this.userRepository = userRepository;
     }
 
-    // POST /auth/register
+    
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
 
@@ -42,7 +42,7 @@ public class AuthController {
                 .body("User registered successfully");
     }
 
-    // POST /auth/login
+   
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
