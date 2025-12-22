@@ -1,15 +1,17 @@
 package com.example.demo.service;
 
-import com.example.demo.model.RoiReport;
+import com.example.demo.entity.RoiReport;
 import java.util.List;
 
 public interface RoiReportService {
 
-    RoiReport generateReportForCode(Long discountCodeId);
+    RoiReport createReport(RoiReport report);
 
-    RoiReport getReportById(Long reportId);
+    RoiReport getReportById(Long id);
 
-    List<RoiReport> getReportsForInfluencer(Long influencerId);
+    List<RoiReport> getAllReports();
 
-    List<RoiReport> getReportsForCampaign(Long campaignId);
+    RoiReport updateReport(Long id, RoiReport report);
+
+    void deleteReport(Long id);
 }
