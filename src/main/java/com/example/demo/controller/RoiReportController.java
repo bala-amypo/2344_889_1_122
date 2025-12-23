@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.RoiReport;
-import com.example.demo.service.RoiService;
+import com.example.demo.service.RoiReportService;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/roi")
 public class RoiReportController {
 
-    private final RoiService roiService;
+    private final RoiReportService roiService;
 
     public RoiReportController(RoiService roiService) {
         this.roiService = roiService;
@@ -29,7 +29,6 @@ public class RoiReportController {
     public List<RoiReport> getRoiByInfluencer(@PathVariable Long influencerId) {
         return roiService.getReportsForInfluencer(influencerId);
     }
-
     @GetMapping("/campaign/{campaignId}")
     public List<RoiReport> getRoiByCampaign(@PathVariable Long campaignId) {
         return roiService.getReportsForCampaign(campaignId);
