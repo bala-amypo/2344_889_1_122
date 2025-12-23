@@ -1,9 +1,9 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.DiscountCode;
-import com.example.demo.model.Influencer;
-import com.example.demo.model.Campaign;
+import com.example.demo.entity.DiscountCode;
+import com.example.demo.entity.Influencer;
+import com.example.demo.entity.Campaign;
 import com.example.demo.repository.DiscountCodeRepository;
 import com.example.demo.repository.InfluencerRepository;
 import com.example.demo.repository.CampaignRepository;

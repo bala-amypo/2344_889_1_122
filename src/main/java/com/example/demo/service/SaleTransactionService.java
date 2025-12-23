@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.SaleTransaction;
+import com.example.demo.entity.SaleTransaction;
 import java.util.List;
 
 public interface SaleTransactionService {
