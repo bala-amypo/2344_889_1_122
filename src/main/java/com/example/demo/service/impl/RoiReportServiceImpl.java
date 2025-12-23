@@ -34,9 +34,8 @@ public class RoiReportServiceImpl implements RoiReportService {
         DiscountCode code = discountCodeRepository.findById(discountCodeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Discount code not found"));
 
-       List<SaleTransaction> sales =
-        saleTransactionRepository.findByDiscountCode_Id(discountCodeId);
-
+        List<SaleTransaction> sales =
+                saleTransactionRepository.findByDiscountCode_Id(discountCodeId);
 
         BigDecimal totalSales = BigDecimal.ZERO;
         for (SaleTransaction sale : sales) {
@@ -44,8 +43,6 @@ public class RoiReportServiceImpl implements RoiReportService {
         }
 
         int totalTransactions = sales.size();
-
-        
         Double roiPercentage = totalTransactions > 0 ? 10.0 : 0.0;
 
         RoiReport report = new RoiReport(
@@ -72,5 +69,13 @@ public class RoiReportServiceImpl implements RoiReportService {
     @Override
     public List<RoiReport> getReportsForCampaign(Long campaignId) {
         return roiReportRepository.findByDiscountCode_Campaign_Id(campaignId);
+    }
+
+    @Override
+    public void deleteReport(Long reportId) {
+        if (!roiReportRepository.existsById(reportId)) {
+            throw new ResourceNotFoundException("ROI report not found");
+        }
+        roiReportRepository.deleteById(reportId);
     }
 }
