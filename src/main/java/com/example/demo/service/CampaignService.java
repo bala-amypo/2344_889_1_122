@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Campaign;
+import com.example.demo.entity.Campaign;
 import java.util.List;
 
 public interface CampaignService {

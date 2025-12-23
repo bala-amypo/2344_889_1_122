@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.SaleTransaction;
+import com.example.demo.entity.SaleTransaction;
 import com.example.demo.service.SaleTransactionService;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;

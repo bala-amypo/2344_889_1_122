@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.RoiReport;
+import com.example.demo.entity.RoiReport;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
