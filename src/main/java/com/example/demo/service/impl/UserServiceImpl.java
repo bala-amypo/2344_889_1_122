@@ -5,8 +5,6 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -24,7 +22,7 @@ public class UserServiceImpl implements UserService {
         }
 
         user.setRole("MARKETER");
-        user.setCreatedAt(LocalDateTime.now());
+        // removed setCreatedAt() — method does not exist in User entity
 
         return userRepository.save(user);
     }
