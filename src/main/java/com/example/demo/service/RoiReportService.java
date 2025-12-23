@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface RoiReportService {
 
-    RoiReport createReport(RoiReport report);
+    RoiReport generateReportForCode(Long discountCodeId);
 
-    RoiReport getReportById(Long id);
+    RoiReport getReportById(Long reportId);
 
-    List<RoiReport> getAllReports();
+    List<RoiReport> getReportsForInfluencer(Long influencerId);
 
-    RoiReport updateReport(Long id, RoiReport report);
+    List<RoiReport> getReportsForCampaign(Long campaignId);
 
-    void deleteReport(Long id);
+    void deleteReport(Long reportId);
 }
