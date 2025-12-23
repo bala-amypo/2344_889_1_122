@@ -36,7 +36,6 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Constructors
     public User() {}
 
     public User(String fullName, String email, String password) {
@@ -46,7 +45,6 @@ public class User {
         this.role = "MARKETER";
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
