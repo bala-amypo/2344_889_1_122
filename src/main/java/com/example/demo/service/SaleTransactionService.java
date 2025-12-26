@@ -1,11 +1,11 @@
-package com.example.demo.service;
+package com.example.demo.repository;
 
 import com.example.demo.entity.SaleTransaction;
+import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
-public interface SaleTransactionService {
-    SaleTransaction createSale(SaleTransaction transaction);
-    List<SaleTransaction> getSalesForCode(Long discountCodeId);
-    List<SaleTransaction> getSalesForInfluencer(Long influencerId);
-    List<SaleTransaction> getSalesForCampaign(Long campaignId);
+public interface SaleTransactionRepository
+        extends JpaRepository<SaleTransaction, Long> {
+
+    List<SaleTransaction> findByDiscountCode_Id(Long discountCodeId);
 }
