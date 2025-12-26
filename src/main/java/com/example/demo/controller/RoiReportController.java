@@ -1,37 +1,37 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.RoiReport;
-import com.example.demo.service.RoiReportService;
-import java.util.List;
+import com.example.demo.model.RoiReport;
+import com.example.demo.service.RoiService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/roi")
+@RequestMapping("/roi")
 public class RoiReportController {
-
-    private final RoiReportService roiService;
-
-    public RoiReportController(RoiReportService roiService) {
+    
+    private final RoiService roiService;
+    
+    public RoiReportController(RoiService roiService) {
         this.roiService = roiService;
     }
-
-    @PostMapping("/generate/{codeId}")
-    public RoiReport generateRoi(@PathVariable Long codeId) {
-        return roiService.generateReportForCode(codeId);
+    
+    @PostMapping("/code/{discountCodeId}")
+    public ResponseEntity<RoiReport> generateReportForCode(@PathVariable Long discountCodeId) {
+        RoiReport report = roiService.generateReportForCode(discountCodeId);
+        return ResponseEntity.ok(report);
     }
-
-    @GetMapping("/{id}")
-    public RoiReport getRoiById(@PathVariable Long id) {
-        return roiService.getReportById(id);
+    
+    @GetMapping("/{reportId}")
+    public ResponseEntity<RoiReport> getReportById(@PathVariable Long reportId) {
+        RoiReport report = roiService.getReportById(reportId);
+        return ResponseEntity.ok(report);
     }
-
+    
     @GetMapping("/influencer/{influencerId}")
-    public List<RoiReport> getRoiByInfluencer(@PathVariable Long influencerId) {
-        return roiService.getReportsForInfluencer(influencerId);
-    }
-
-    @GetMapping("/campaign/{campaignId}")
-    public List<RoiReport> getRoiByCampaign(@PathVariable Long campaignId) {
-        return roiService.getReportsForCampaign(campaignId);
+    public ResponseEntity<List<RoiReport>> getReportsForInfluencer(@PathVariable Long influencerId) {
+        List<RoiReport> reports = roiService.getReportsForInfluencer(influencerId);
+        return ResponseEntity.ok(reports);
     }
 }

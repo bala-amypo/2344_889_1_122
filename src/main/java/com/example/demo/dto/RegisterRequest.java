@@ -1,19 +1,19 @@
-package com.example.demo.dto;
+// package com.example.demo.dto;
 
-public class RegisterRequest {
-    private String fullName;
-    private String email;
-    private String password;
+// public class RegisterRequest {
+//     private String fullName;
+//     private String email;
+//     private String password;
 
-    public String getFullName() {
-        return fullName;
-    }
+//     public String getFullName() {
+//         return fullName;
+//     }
 
-    public String getEmail() {
-        return email;
-    }
+//     public String getEmail() {
+//         return email;
+//     }
 
-    public String getPassword() {
-        return password;
-    }
-}
+//     public String getPassword() {
+//         return password;
+//     }
+// }

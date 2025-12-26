@@ -1,51 +1,37 @@
 package com.example.demo.controller;
-import com.example.demo.entity.Campaign;
+
+import com.example.demo.model.Campaign;
 import com.example.demo.service.CampaignService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 
 @RestController
 @RequestMapping("/campaigns")
 public class CampaignController {
-
+    
     private final CampaignService campaignService;
-
+    
     public CampaignController(CampaignService campaignService) {
         this.campaignService = campaignService;
     }
-
-    @PostMapping
-    public Campaign createCampaign(@RequestBody Campaign campaign) {
-        return campaignService.createCampaign(campaign);
-    }
-
+    
     @PutMapping("/{id}")
-    public Campaign updateCampaign(
-            @PathVariable Long id,
-            @RequestBody Campaign campaign) {
-        return campaignService.updateCampaign(id, campaign);
-    }
-
-    @GetMapping("/{id}")
-    public Campaign getCampaignById(@PathVariable Long id) {
-        return campaignService.getCampaignById(id);
-    }
-
-    @GetMapping
-    public List<Campaign> getAllCampaigns() {
-        return campaignService.getAllCampaigns();
+    public ResponseEntity<Campaign> updateCampaign(@PathVariable Long id, @RequestBody Campaign campaign) {
+        Campaign updated = campaignService.updateCampaign(id, campaign);
+        return ResponseEntity.ok(updated);
     }
     
-    @PutMapping("/{id}/deactivate")
-    public Campaign deactivateCampaign(@PathVariable Long id) {
-        return campaignService.deactivateCampaign(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<Campaign> getCampaignById(@PathVariable Long id) {
+        Campaign campaign = campaignService.getCampaignById(id);
+        return ResponseEntity.ok(campaign);
+    }
+    
+    @GetMapping
+    public ResponseEntity<List<Campaign>> getAllCampaigns() {
+        List<Campaign> campaigns = campaignService.getAllCampaigns();
+        return ResponseEntity.ok(campaigns);
     }
 }
