@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.RoiReport;
+import com.example.demo.entity.RoiReport;
 import com.example.demo.service.RoiService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
