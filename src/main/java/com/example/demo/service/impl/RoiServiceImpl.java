@@ -39,7 +39,7 @@ public class RoiReportServiceImpl implements RoiReportService {
 
         BigDecimal totalSales = BigDecimal.ZERO;
         for (SaleTransaction sale : sales) {
-            totalSales = totalSales.add(sale.getSaleAmount());
+            totalSales = totalSales.add(sale.getTransactionAmount());
         }
 
         int totalTransactions = sales.size();
