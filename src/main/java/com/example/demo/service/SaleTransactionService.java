@@ -4,14 +4,8 @@ import com.example.demo.entity.SaleTransaction;
 import java.util.List;
 
 public interface SaleTransactionService {
-
-    SaleTransaction logTransaction(SaleTransaction transaction);
-    SaleTransaction getTransactionById(Long id);
-
+    SaleTransaction createSale(SaleTransaction transaction);
     List<SaleTransaction> getSalesForCode(Long discountCodeId);
-
     List<SaleTransaction> getSalesForInfluencer(Long influencerId);
-
     List<SaleTransaction> getSalesForCampaign(Long campaignId);
-
 }
