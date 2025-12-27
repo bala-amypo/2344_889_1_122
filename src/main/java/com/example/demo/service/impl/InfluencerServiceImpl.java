@@ -1,61 +1,50 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.entity.DiscountCode;
-import com.example.demo.entity.RoiReport;
-import com.example.demo.entity.SaleTransaction;
-import com.example.demo.repository.DiscountCodeRepository;
-import com.example.demo.repository.RoiReportRepository;
-import com.example.demo.repository.SaleTransactionRepository;
-import com.example.demo.service.RoiService;
+import com.example.demo.model.Influencer;
+import com.example.demo.repository.InfluencerRepository;
+import com.example.demo.service.InfluencerService;
+
+import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 @Service
-public class RoiServiceImpl implements RoiService {
-    
-    private final RoiReportRepository roiReportRepository;
-    private final SaleTransactionRepository saleTransactionRepository;
-    private final DiscountCodeRepository discountCodeRepository;
-    
-    public RoiServiceImpl(RoiReportRepository roiReportRepository,
-                         SaleTransactionRepository saleTransactionRepository,
-                         DiscountCodeRepository discountCodeRepository) {
-        this.roiReportRepository = roiReportRepository;
-        this.saleTransactionRepository = saleTransactionRepository;
-        this.discountCodeRepository = discountCodeRepository;
+public class InfluencerServiceImpl implements InfluencerService {
+
+    private final InfluencerRepository influencerRepository;
+
+    public InfluencerServiceImpl(InfluencerRepository influencerRepository) {
+        this.influencerRepository = influencerRepository;
     }
-    
+
     @Override
-    public RoiReport generateReportForCode(Long discountCodeId) {
-        DiscountCode discountCode = discountCodeRepository.findById(discountCodeId)
-                .orElseThrow(() -> new ResourceNotFoundException("Discount code not found"));
-        
-        List<SaleTransaction> sales = saleTransactionRepository.findByDiscountCodeId(discountCodeId);
-        
-        BigDecimal totalSales = sales.stream()
-                .map(SaleTransaction::getTransactionAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        
-        Integer totalTransactions = sales.size();
-        
-        // Simple ROI calculation - can be customized based on business logic
-        Double roiPercentage = totalSales.doubleValue() * 0.1; // 10% of total sales as ROI
-        
-        RoiReport report = new RoiReport(discountCode, totalSales, totalTransactions, roiPercentage);
-        return roiReportRepository.save(report);
+    public Influencer createInfluencer(Influencer influencer) {
+        return influencerRepository.save(influencer);
     }
-    
+
     @Override
-    public RoiReport getReportById(Long reportId) {
-        return roiReportRepository.findById(reportId)
-                .orElseThrow(() -> new ResourceNotFoundException("ROI report not found"));
+    public Influencer updateInfluencer(Long id, Influencer influencer) {
+        Influencer existing = influencerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Influencer not found"));
+        existing.setName(influencer.getName());
+        existing.setEmail(influencer.getEmail());
+        return influencerRepository.save(existing);
     }
-    
+
     @Override
-    public List<RoiReport> getReportsForInfluencer(Long influencerId) {
-        return roiReportRepository.findByDiscountCodeInfluencerId(influencerId);
+    public Influencer getInfluencerById(Long id) {
+        return influencerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Influencer not found"));
+    }
+
+    @Override
+    public List<Influencer> getAllInfluencers() {
+        return influencerRepository.findAll();
+    }
+
+    @Override
+    public void deactivateInfluencer(Long id) {
+        Influencer inf = getInfluencerById(id);
+        inf.setActive(false);
+        influencerRepository.save(inf);
     }
 }
