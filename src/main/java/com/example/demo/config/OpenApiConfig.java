@@ -17,7 +17,6 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI openAPI() {
 
-        // 🔐 Swagger-only JWT configuration
         SecurityScheme securityScheme = new SecurityScheme()
                 .type(SecurityScheme.Type.HTTP)
                 .scheme("bearer")
